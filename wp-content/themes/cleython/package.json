@@ -1,0 +1,19 @@
+{
+  "name": "cleython",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.8.0",
+"devDependencies": {
+  "tailwindcss": "^3.4.1",
+  "postcss": "^8.4.35",
+  "autoprefixer": "^10.4.16"
+}
+}

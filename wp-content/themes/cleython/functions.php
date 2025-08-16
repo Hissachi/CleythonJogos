@@ -15,6 +15,11 @@ function cleython_setup() {
 add_action('after_setup_theme', 'cleython_setup');
 
 // Carregar estilos e scripts
+function enqueue_tailwind() {
+    wp_enqueue_style('tailwind', get_template_directory_uri() . '/dist/output.css');
+}
+add_action('wp_enqueue_scripts', 'enqueue_tailwind');
+
 function cleython_scripts() {
     // Estilo principal
     wp_enqueue_style('cleython-style', get_stylesheet_uri());

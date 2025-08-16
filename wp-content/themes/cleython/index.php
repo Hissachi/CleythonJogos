@@ -18,6 +18,8 @@
                 <article>
                     <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
                     <?php the_content(); ?>
+                    <div class="flex bg-green-500 w-10 h10">Teste</div>
+                    
                 </article>
             <?php endwhile; ?>
         <?php endif; ?>
