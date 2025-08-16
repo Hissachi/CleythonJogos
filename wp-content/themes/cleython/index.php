@@ -7,27 +7,40 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-    <header>
-        <h1><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
-        <p><?php bloginfo('description'); ?></p>
-    </header>
+    <?php wp_body_open(); ?>
+    
+    <!-- Container principal -->
+    <div class="min-h-screen flex flex-col">
+        <!-- Navbar -->
+        <nav id="navbar" class="bg-white shadow-lg">
+            <!-- O conteúdo será inserido pelo JavaScript -->
+        </nav>
 
-    <main>
-        <?php if (have_posts()) : ?>
-            <?php while (have_posts()) : the_post(); ?>
-                <article>
-                    <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                    <?php the_content(); ?>
-                    <div class="flex bg-green-500 w-10 h10">Teste</div>
-                    
-                </article>
-            <?php endwhile; ?>
-        <?php endif; ?>
-    </main>
+        <!-- Conteúdo -->
+        <main class="flex-grow">
+            <?php if (have_posts()) : ?>
+                <?php while (have_posts()) : the_post(); ?>
+                    <article class="container mx-auto px-4 py-8">
+                        <h2 class="text-2xl font-bold mb-4">
+                            <a href="<?php the_permalink(); ?>" class="hover:text-blue-600">
+                                <?php the_title(); ?>
+                            </a>
+                        </h2>
+                        <div class="prose max-w-none">
+                            <?php the_content(); ?>
+                        </div>
+                    </article>
+                <?php endwhile; ?>
+            <?php endif; ?>
+        </main>
 
-    <footer>
-        <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></p>
-    </footer>
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-6">
+            <div class="container mx-auto px-4">
+                <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></p>
+            </div>
+        </footer>
+    </div>
 
     <?php wp_footer(); ?>
 </body>
