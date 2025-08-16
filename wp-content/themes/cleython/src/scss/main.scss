@@ -1,12 +1,14 @@
+/* main.scss - Versão Tailwind CSS v3 */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.nav-link {
-    transition: color 0.3s ease;
-    
-    &-active {
-      color: theme('colors.indigo.600');
-      font-weight: theme('fontWeight.semibold');
-    }
+/* Estilos customizados */
+.navbar {
+  @apply shadow-md bg-white fixed w-full z-50 transition-all duration-300;
+  
+  &.scrolled {
+    @apply shadow-lg backdrop-blur-md bg-opacity-95;
+    backdrop-filter: blur(10px);
   }
+}

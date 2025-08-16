@@ -23,10 +23,10 @@ eval("{var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * j
 /*!************************!*\
   !*** ./src/ts/main.ts ***!
   \************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("{/* provided dependency */ var $ = __webpack_require__(/*! jquery */ \"./node_modules/.pnpm/jquery@3.7.1/node_modules/jquery/dist/jquery.js\");\n\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n__webpack_require__(/*! jquery */ \"./node_modules/.pnpm/jquery@3.7.1/node_modules/jquery/dist/jquery.js\");\n// Seu código principal\n$(document).ready(function () {\n    console.log('Tema carregado!');\n});\nvar ThemeCore = /** @class */ (function () {\n    function ThemeCore() {\n        this.mobileMenuActive = false;\n        this.init();\n    }\n    ThemeCore.prototype.init = function () {\n        this.setupMobileMenu();\n        this.setupAjaxForms();\n    };\n    ThemeCore.prototype.setupMobileMenu = function () {\n        var _this = this;\n        $('#mobile-menu-toggle').on('click', function () {\n            _this.mobileMenuActive = !_this.mobileMenuActive;\n            $('#primary-menu').toggleClass('active', _this.mobileMenuActive);\n        });\n    };\n    ThemeCore.prototype.setupAjaxForms = function () {\n        var _this = this;\n        $('.ajax-form').on('submit', function (e) {\n            e.preventDefault();\n            if (!window.ajaxurl) {\n                console.error('ajaxurl não definido');\n                return;\n            }\n            $.post(window.ajaxurl, {\n                action: 'my_theme_form_submit',\n                data: $(e.target).serialize()\n            }, function (response) {\n                _this.handleFormResponse(response);\n            });\n        });\n    };\n    ThemeCore.prototype.handleFormResponse = function (response) {\n        console.log('Resposta do servidor:', response);\n    };\n    return ThemeCore;\n}());\n// Inicialização quando o DOM estiver pronto\n$(document).ready(function () {\n    console.log('jQuery funcionando!');\n});\n\n\n//# sourceURL=webpack://cleython/./src/ts/main.ts?\n}");
+eval("{__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/.pnpm/jquery@3.7.1/node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n/* provided dependency */ var $ = __webpack_require__(/*! jquery */ \"./node_modules/.pnpm/jquery@3.7.1/node_modules/jquery/dist/jquery.js\");\n\nclass ThemeCore {\n    constructor() {\n        this.mobileMenuActive = false;\n        this.init();\n    }\n    init() {\n        this.setupMobileMenu();\n        this.setupAjaxForms();\n    }\n    setupMobileMenu() {\n        $('#mobile-menu-toggle').on('click', (e) => {\n            e.preventDefault();\n            this.mobileMenuActive = !this.mobileMenuActive;\n            $('#primary-menu').toggleClass('active', this.mobileMenuActive);\n        });\n    }\n    setupAjaxForms() {\n        $('.ajax-form').on('submit', (e) => {\n            e.preventDefault();\n            if (!window.ajaxurl) {\n                console.error('ajaxurl não definido');\n                return;\n            }\n            const formData = $(e.currentTarget).serialize();\n            $.post(window.ajaxurl, {\n                action: 'my_theme_form_submit',\n                data: formData\n            }, (response) => {\n                this.handleFormResponse(response);\n            });\n        });\n    }\n    handleFormResponse(response) {\n        console.log('Resposta do servidor:', response);\n    }\n}\n// Handler do botão de contato\nfunction handleContactClick(e) {\n    var _a;\n    e.preventDefault();\n    if (!((_a = window.wp_theme_vars) === null || _a === void 0 ? void 0 : _a.ajaxurl)) {\n        window.location.href = '/contato';\n        return;\n    }\n    fetch(window.wp_theme_vars.ajaxurl, {\n        method: 'POST',\n        headers: {\n            'Content-Type': 'application/x-www-form-urlencoded',\n        },\n        body: new URLSearchParams({\n            action: 'track_about_page_click',\n            nonce: window.wp_theme_vars.nonce\n        })\n    })\n        .then(async (response) => {\n        const data = await response.json();\n        if (data.success) {\n            window.location.href = '/contato';\n        }\n    })\n        .catch((error) => {\n        console.error('Erro:', error);\n    });\n}\n// Inicialização\n$(document).ready(() => {\n    var _a;\n    console.log('Tema carregado!');\n    (_a = document.getElementById('contactBtn')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', handleContactClick);\n    new ThemeCore();\n});\n\n\n//# sourceURL=webpack://cleython/./src/ts/main.ts?\n}");
 
 /***/ })
 
@@ -55,6 +55,47 @@ eval("{/* provided dependency */ var $ = __webpack_require__(/*! jquery */ \"./n
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
 /******/ 	
 /************************************************************************/
 /******/ 	

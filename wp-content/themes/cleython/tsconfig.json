@@ -1,20 +1,23 @@
 {
-    "compilerOptions": {     
-      "esModuleInterop": true,
-      "allowSyntheticDefaultImports": true,
-      "typeRoots": [
-        "./node_modules/@types",
-        "./types"
-      ]
+  "compilerOptions": {
+    "types": ["jquery"],
+    "target": "ES2017",
+    "lib": ["ES2017", "DOM"],
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
     },
-    
-    "include": [
-      "**/*.ts",
-      "**/*.tsx",
-      "types/**/*.d.ts"
-    ],
-    "exclude": [
-      "node_modules",
-      "dist"
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
     ]
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

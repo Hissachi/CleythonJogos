@@ -1,21 +1,31 @@
 import 'jquery';
-declare var $: any;
-declare var jQuery: any;
 
+// Extensão dos tipos globais
 declare global {
   interface Window {
-    $: any;
-    jQuery: any;
+    ajaxurl: string;
+    wp_theme_vars?: {
+      ajaxurl: string;
+      nonce: string;
+    };
   }
 }
 
-// Seu código principal
-$(document).ready(() => {
-  console.log('Tema carregado!');
-});
+// Interface para respostas AJAX
+interface AjaxResponse {
+  success: boolean;
+  data?: unknown;
+  message?: string;
+}
+
+interface FormResponse {
+  status: string;
+  message: string;
+  data?: unknown;
+}
 
 class ThemeCore {
-  private mobileMenuActive: boolean = false;
+  private mobileMenuActive = false;
 
   constructor() {
     this.init();
@@ -27,14 +37,15 @@ class ThemeCore {
   }
 
   private setupMobileMenu(): void {
-    $('#mobile-menu-toggle').on('click', () => {
+    $('#mobile-menu-toggle').on('click', (e: JQuery.ClickEvent) => {
+      e.preventDefault();
       this.mobileMenuActive = !this.mobileMenuActive;
       $('#primary-menu').toggleClass('active', this.mobileMenuActive);
     });
   }
 
   private setupAjaxForms(): void {
-    $('.ajax-form').on('submit', (e) => {
+    $('.ajax-form').on('submit', (e: JQuery.SubmitEvent) => {
       e.preventDefault();
       
       if (!window.ajaxurl) {
@@ -42,21 +53,57 @@ class ThemeCore {
         return;
       }
 
+      const formData = $(e.currentTarget).serialize();
+      
       $.post(window.ajaxurl, {
         action: 'my_theme_form_submit',
-        data: $(e.target).serialize()
-      }, (response) => {
+        data: formData
+      }, (response: FormResponse) => {
         this.handleFormResponse(response);
       });
     });
   }
 
-  private handleFormResponse(response: any): void {
+  private handleFormResponse(response: FormResponse): void {
     console.log('Resposta do servidor:', response);
   }
 }
 
-// Inicialização quando o DOM estiver pronto
+// Handler do botão de contato
+function handleContactClick(e: MouseEvent): void {
+  e.preventDefault();
+  
+  if (!window.wp_theme_vars?.ajaxurl) {
+    window.location.href = '/contato';
+    return;
+  }
+
+  fetch(window.wp_theme_vars.ajaxurl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams({
+      action: 'track_about_page_click',
+      nonce: window.wp_theme_vars.nonce
+    })
+  })
+  .then(async (response: Response) => {
+    const data: AjaxResponse = await response.json();
+    if (data.success) {
+      window.location.href = '/contato';
+    }
+  })
+  .catch((error) => {
+    console.error('Erro:', error);
+  });
+}
+
+// Inicialização
 $(document).ready(() => {
-  console.log('jQuery funcionando!');
+  console.log('Tema carregado!');
+  
+  document.getElementById('contactBtn')?.addEventListener('click', handleContactClick);
+  
+  new ThemeCore();
 });

@@ -9,13 +9,16 @@
     "tailwind:build": "tailwindcss -i ./src/scss/main.scss -o ./dist/css/main.css --minify"
   },
   "devDependencies": {
+    "@tailwindcss/nesting": "0.0.0-insiders.565cd3e",
     "@types/jquery": "^3.5.32",
-    "autoprefixer": "^10.4.16",
+    "autoprefixer": "^10.4.21",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^7.1.2",
     "jquery": "^3.7.1",
-    "postcss": "^8.4.35",
+    "postcss": "^8.5.6",
     "postcss-loader": "^8.1.1",
+    "postcss-nested": "^7.0.2",
+    "postcss-scss": "^4.0.9",
     "sass": "^1.90.0",
     "sass-loader": "^13.3.3",
     "style-loader": "^4.0.0",

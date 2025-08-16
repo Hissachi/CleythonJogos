@@ -1,6 +1,15 @@
 <?php
 // Funções do tema
 
+if (!defined('ABSPATH')) {
+    die('Acesso direto negado');
+}
+
+// Debug: Verifique funções do WordPress
+if (!function_exists('add_action')) {
+    die('WordPress não carregado');
+}
+
 function cleython_setup() {
     add_theme_support('post-thumbnails');
     register_nav_menus(['primary' => __('Menu Principal', 'cleython')]);
@@ -17,13 +26,15 @@ function cleython_enqueue_scripts() {
         [],
         filemtime(get_template_directory() . '/dist/css/main.css')
     );
-    
+
     // JS
+    wp_enqueue_script('jquery');
+    
     wp_enqueue_script(
-        'cleython-navbar',
-        get_template_directory_uri() . '/dist/js/navbar.js',
+        'cleython-main',
+        get_template_directory_uri() . '/dist/js/main.js',
         ['jquery'],
-        filemtime(get_template_directory() . '/dist/js/navbar.js'),
+        filemtime(get_template_directory() . '/dist/js/main.js'),
         true
     );
     
@@ -45,3 +56,25 @@ function cleython_enqueue_scripts() {
     ]);
 }
 add_action('wp_enqueue_scripts', 'cleython_enqueue_scripts');
+
+function cleython_body_classes($classes) {
+    // Adiciona classe quando estiver na página inicial
+    if (is_front_page()) {
+        $classes[] = 'home-page';
+    }
+    return $classes;
+}
+add_filter('body_class', 'cleython_body_classes');
+
+function cleython_fix_quirks_mode() {
+    remove_action('wp_head', 'wp_generator');
+    remove_action('wp_head', 'wlwmanifest_link');
+    remove_action('wp_head', 'rsd_link');
+    remove_action('wp_head', 'wp_shortlink_wp_head');
+    
+    // Adiciona meta tag X-UA-Compatible
+    add_action('wp_head', function() {
+        echo '<meta http-equiv="X-UA-Compatible" content="IE=edge">';
+    }, 1);
+}
+add_action('init', 'cleython_fix_quirks_mode');
