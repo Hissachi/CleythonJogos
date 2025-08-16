@@ -1,4 +1,3 @@
-// Adicione no início do arquivo
 declare const wp_theme_vars: {
     ajaxurl: string;
     nonce: string;
@@ -37,7 +36,6 @@ declare const wp_theme_vars: {
     }
   
     private renderContent(): void {
-      // Renderiza conteúdo dinâmico
       const contentElement = document.getElementById('aboutContent');
       if (contentElement) {
         contentElement.innerHTML = `
@@ -45,8 +43,7 @@ declare const wp_theme_vars: {
           <p class="mt-4">Fundada em ${new Date().getFullYear() - 5}</p>
         `;
       }
-  
-      // Renderiza membros do time
+
       this.renderTeamMembers();
     }
   
@@ -75,7 +72,6 @@ declare const wp_theme_vars: {
   
     private handleContactClick(): void {
       if (typeof wp_theme_vars !== 'undefined') {
-        // Exemplo de chamada AJAX
         fetch(wp_theme_vars.ajaxurl, {
           method: 'POST',
           headers: {
@@ -100,8 +96,7 @@ declare const wp_theme_vars: {
       return 'Somos uma empresa dedicada a criar soluções inovadoras para nossos clientes.';
     }
   }
-  
-  // Inicializa quando o DOM estiver pronto
+
   document.addEventListener('DOMContentLoaded', () => {
     new AboutPage();
   });
