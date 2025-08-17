@@ -25,7 +25,6 @@ get_header();
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold mb-12 text-center text-gray-900 dark:text-gray-100">Nosso Time</h2>
       <div class="team-grid grid grid-cols-1 md:grid-cols-3 gap-8" id="teamMembers">
-        <!-- Conteúdo dinâmico será inserido aqui via JS -->
       </div>
     </div>
   </section>
