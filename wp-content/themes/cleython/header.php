@@ -5,7 +5,7 @@
  * @package Cleython
  */
 if (!defined('ABSPATH')) {
-    exit; // Segurança básica
+    exit;
 }
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="scroll-smooth">
@@ -19,17 +19,8 @@ if (!defined('ABSPATH')) {
     <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/dist/js/main.js" as="script">
     
     <?php wp_head(); ?>
-    
-    <!-- Fallback CSS inicial (evita FOUC) -->
-    <style>
-        body:not(.dark) {
-            background-color: white !important;
-            color: #1a1a1a !important;
-        }
-    </style>
-    <?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
+<body <?php body_class('bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300'); ?>>
     <!-- Navbar responsiva com dark mode -->
     <header class="fixed inset-x-0 top-0 z-50 border-b border-gray-100 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg transition-colors duration-300">
         <div class="container mx-auto px-4 sm:px-6">
