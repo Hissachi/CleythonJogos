@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "types": ["jquery"],
-    "target": "ES2017",
+    "target": "ES6",
     "lib": ["ES2017", "DOM"],
     "module": "ESNext",
     "esModuleInterop": true,
@@ -9,14 +9,18 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
+    "outDir": "./dist/js",
+    "rootDir": "./src/ts",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@types/*": ["src/ts/types/*"]
     },
     "typeRoots": [
+      "./src/ts/types",
       "./node_modules/@types",
       "./types"
-    ]
+    ],
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]

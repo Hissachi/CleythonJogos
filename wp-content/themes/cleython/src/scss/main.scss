@@ -1,9 +1,7 @@
-/* main.scss - Versão Tailwind CSS v3 */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Estilos customizados */
 .navbar {
   @apply shadow-md bg-white fixed w-full z-50 transition-all duration-300;
   
@@ -11,4 +9,50 @@
     @apply shadow-lg backdrop-blur-md bg-opacity-95;
     backdrop-filter: blur(10px);
   }
+}
+
+.header-transition {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn {
+  transition: all 0.2s ease;
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a {
+  position: relative;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #6366f1;
+    transition: width 0.3s ease;
+  }
+  
+  &:hover:after {
+    width: 100%;
+  }
+}
+
+#mobile-menu {
+  transition: all 0.3s ease-out;
 }

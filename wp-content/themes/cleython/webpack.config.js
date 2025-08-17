@@ -4,9 +4,9 @@ const webpack = require("webpack");
 
 module.exports = {
   entry: {
-    main: "./src/ts/main.ts",
-    about: "./src/ts/about-page.ts",
-    navbar: "./src/ts/navbar.ts",
+    main: './src/ts/main.ts',
+    about: './src/ts/about-page.ts',
+    navbar: "./src/ts/components/navbar.ts",
     navbarEffects: "./src/ts/navbar-effects.ts",
   },
   output: {
@@ -43,6 +43,8 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
     alias: {
       jquery$: path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
+      '@': path.resolve(__dirname, 'src/ts'),
+      '@types': path.resolve(__dirname, 'src/ts/types'),
     },
   },
   plugins: [
