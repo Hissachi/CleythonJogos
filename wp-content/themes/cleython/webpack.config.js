@@ -8,6 +8,7 @@ module.exports = {
     about: './src/ts/about-page.ts',
     navbar: "./src/ts/components/navbar.ts",
     navbarEffects: "./src/ts/navbar-effects.ts",
+    'got-cards': "./src/ts/components/got-cards.ts",
   },
   output: {
     filename: "[name].js",

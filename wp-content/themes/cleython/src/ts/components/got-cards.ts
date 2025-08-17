@@ -74,16 +74,21 @@ const houses = [
   let shuffledHouses: typeof houses = [];
   
   // Elementos do DOM
-  const startScreen = document.getElementById("start-screen")!;
-  const questionContainer = document.getElementById("question-container")!;
-  const startBtn = document.getElementById("start-btn")!;
+  document.addEventListener("DOMContentLoaded", () => {
+    const startScreen = document.getElementById("start-screen");
+    const questionContainer = document.getElementById("question-container");
+    const startBtn = document.getElementById("start-btn");
+    if (!startScreen || !questionContainer || !startBtn) return;
   const questionEl = document.getElementById("question")!;
   const flagImageEl = document.getElementById("flag-image") as HTMLImageElement;
   const optionsEl = document.getElementById("options")!;
   const resultEl = document.getElementById("result")!;
+
+
+  
   
   startBtn.addEventListener("click", () => {
-    shuffledHouses = [...houses].sort(() => Math.random() - 0.5); // Embaralha as casas
+    shuffledHouses = [...houses].sort(() => Math.random() - 0.5);
     currentQuestionIndex = 0;
     score = 0;
     startScreen.classList.add("hidden");
@@ -140,11 +145,15 @@ const houses = [
   }
   
   function endQuiz() {
-    questionContainer.innerHTML = `
-      <h2 class="text-2xl font-semibold mb-6">Quiz Concluído!</h2>
-      <p class="text-xl mb-4">Sua pontuação: ${score} / ${shuffledHouses.length}</p>
-      <button onclick="location.reload()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg">
-        Jogar Novamente
-      </button>
-    `;
+    if (questionContainer) {
+      questionContainer.innerHTML = `
+        <h2 class="text-2xl font-semibold mb-6">Quiz Concluído!</h2>
+        <p class="text-xl mb-4">Sua pontuação: ${score} / ${shuffledHouses.length}</p>
+        <button onclick="location.reload()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg">
+          Jogar Novamente
+        </button>
+      `;
+    }
   }
+});
+  

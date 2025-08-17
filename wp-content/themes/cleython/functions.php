@@ -162,6 +162,8 @@ add_filter('nav_menu_css_class', function($classes, $item, $args) {
     return $classes;
 }, 10, 3);
 
+
+
 /**
  * Fallback para carregamento de scripts
  */
@@ -183,9 +185,19 @@ if (WP_DEBUG) {
     add_action('admin_notices', function() {
         echo '<div class="notice notice-warning"><p>Modo debug ativado</p></div>';
     });
-    
+
     // Log de carregamento de scripts
     add_action('wp_enqueue_scripts', function() {
         error_log('Scripts do tema carregados');
-    }, 9999);
+        $assets_path = get_template_directory_uri() . '/dist';
+        if (is_page('got-quizz')) {
+            wp_enqueue_script(
+                'cleython-got-cards',
+                $assets_path . '/js/got-cards.js',
+                ['jquery'],
+                filemtime(get_template_directory() . '/dist/js/got-cards.js'),
+                true
+            );
+        }
+    }, 20);
 }
